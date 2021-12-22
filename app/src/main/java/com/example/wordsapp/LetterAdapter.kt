@@ -24,6 +24,7 @@ import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.example.wordsapp.DetailActivity.Companion.LETTER
 
 /**
  * Adapter for the [RecyclerView] in [MainActivity].
@@ -81,7 +82,13 @@ class LetterAdapter :
             // Call the putExtra method, passing in "letter" as the first argument and the button
             // text as the second argument.
 
-            intent.putExtra("letter", holder.button.text.toString())
+            // 11. Modify the call to putExtra to use the new constant LETTER and import.
+            // import com.example.wordsapp.DetailActivity.Companion.LETTER
+            //  By refactoring, you just made your code easier to read, and easier to maintain.
+            //  If this, or any other constant you add, ever needs to change, you only need to do so
+            //  in one place.
+
+            intent.putExtra(LETTER, holder.button.text.toString())
 
             // 5. Call the startActivity() method on the context object, passing in the intent.
             // GOTO DetailActivity

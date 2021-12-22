@@ -23,6 +23,21 @@ import com.example.wordsapp.databinding.ActivityDetailBinding
 
 
 class DetailActivity : AppCompatActivity() {
+    // For a small list such as this hardcoding "letter" is fine, but for larger apps where you'll
+    // have multiple views, this is not feasible. see 8.
+    // 8. A companion object is similar to other objects, such as instances of a class. However,
+    // only a single instance of a companion object will exist for the duration of your program,
+    // which is why this is sometimes called the singleton pattern.For now, use a companion object
+    // as a way to organize constants and make them accessible outside of the DetailActivity.
+    // You'll start by using a companion object to refactor the code for the "letter" extra.
+    // the object keyword. There's also a keyword companion, meaning it's associated with the
+    // DetailActivity class, and we don't need to give it a separate type name.
+    companion object {
+        // 9. Add a property for the letter constant.
+        const val LETTER = "letter"
+
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +54,10 @@ class DetailActivity : AppCompatActivity() {
         // 7. Replace the hard coded letter with code to get the letterId passed in from the intent.
         // Then run the app, should now display 5 random words for each appropriate letter clicked
         // on the MainActivity, not just words beginning with A.
-        val letterId = "A"
+        // 10. To use the new constant, update your hard coded letter call in onCreate()
+        // from getString("letter") to getString(Letter)
+        // 11. GOTO LetterAdapter
+        val letterId = intent?.extras?.getString(LETTER).toString()
 
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
