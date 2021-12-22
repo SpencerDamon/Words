@@ -36,6 +36,9 @@ class DetailActivity : AppCompatActivity() {
         // Retrieve the LETTER from the Intent extras
         // intent.extras.getString returns String? (String or null)
         // so toString() guarantees that the value will be a String
+        // 7. Replace the hard coded letter with code to get the letterId passed in from the intent.
+        // Then run the app, should now display 5 random words for each appropriate letter clicked
+        // on the MainActivity, not just words beginning with A.
         val letterId = "A"
 
         val recyclerView = binding.recyclerView

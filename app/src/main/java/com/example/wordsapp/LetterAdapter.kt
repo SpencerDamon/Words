@@ -15,6 +15,7 @@
  */
 package com.example.wordsapp
 
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -62,6 +63,37 @@ class LetterAdapter :
     override fun onBindViewHolder(holder: LetterViewHolder, position: Int) {
         val item = list.get(position)
         holder.button.text = item.toString()
+        // 1. Set the onClickLister on the holder.button
+
+        holder.button.setOnClickListener {
+
+            //2. Get a reference from the context
+
+            val context = holder.view.context
+
+            // 3. Create an Intent, passing in the context, as well as the class name
+            // of the destination activity
+
+            val intent = Intent(context, DetailActivity::class.java)
+
+            // 4. The name of the activity you want to show is specified with DetailActivity::class
+            // .java. An actual DetailActivity object is created behind the scenes.
+            // Call the putExtra method, passing in "letter" as the first argument and the button
+            // text as the second argument.
+
+            intent.putExtra("letter", holder.button.text.toString())
+
+            // 5. Call the startActivity() method on the context object, passing in the intent.
+            // GOTO DetailActivity
+
+            context.startActivity(intent)
+
+            // 6. Run the app, you should get MainActivity displaying a Header Words and a button
+            // for each letter. When you click on the letter, DetailActivity opens displaying a
+            // header that says Words That Start With A, and 5 buttons each displaying a random word
+            // beginning with the letter A. But, it only display A words for every different letter
+            // clicked, until step 7.
+        }
     }
 
     // Setup custom accessibility delegate to set the text read with
